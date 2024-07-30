@@ -1,3 +1,2 @@
-# flutter_simple_calculator
-
-A new Flutter project.
+# Flutter Simple Calculator
+This project is designed with simple **StatefulWidget**.
