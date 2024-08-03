@@ -27,47 +27,53 @@ class _CalculatorPageState extends State<CalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          title: Text("hello"),
+          // leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+        ),
         body: Center(
             child: SizedBox(
-      width: 300,
-      height: 500,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(result.toString()),
+          width: 300,
+          height: 500,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text(result.toString()),
+                        ),
+                      ),
                     ),
-                  ),
+                    ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            result = 0.0;
+                            action = CalculatorActions.none;
+                            temp = 0.0;
+                          });
+                        },
+                        child: const Icon(Icons.delete))
+                  ],
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        result = 0.0;
-                        action = CalculatorActions.none;
-                        temp = 0.0;
-                      });
-                    },
-                    child: const Icon(Icons.delete))
-              ],
-            ),
+              ),
+              GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 4,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                children: buttons(),
+              ),
+            ],
           ),
-          GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 4,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            children: buttons(),
-          ),
-        ],
-      ),
-    )));
+        )));
   }
 
   List<Widget> buttons() {
